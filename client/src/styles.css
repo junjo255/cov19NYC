@@ -11,6 +11,30 @@ header {
     color: #ffffff;
 }
 
+.tab-container {
+  margin-left: auto;
+}
+
+.tab-container div {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 17px;
+  letter-spacing: 3px;
+}
+
+.tab-container div:hover {
+  cursor: pointer;
+}
+
+.selected-tab {
+  border-bottom: 3px solid #ffffff;
+  padding-bottom: 4px;
+}
+
+header p {
+  justify-content: flex-start;
+}
+
 main {
     border: 1px solid black;
     margin: 80px 90px

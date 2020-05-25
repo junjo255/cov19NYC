@@ -19,7 +19,7 @@ class App extends React.Component {
                     sort: "zip",
                     showPerPage: 20,
                     currentPage: 1,
-                    toggleTable: true
+                    currentTab: "table-tab"
      		}
                this.handleChange = this.handleChange.bind(this);
                this.handlePagination = this.handlePagination.bind(this);
@@ -46,9 +46,9 @@ class App extends React.Component {
           });
      }
 
-     handleToggle() {
-          this.setState(prev => {
-               return { toggleTable: !prev.toggleTable}
+     handleToggle(tab) {
+          this.setState({
+               currentTab: tab
           });
      }
 
@@ -68,27 +68,21 @@ class App extends React.Component {
           data = sorted.slice(showPerPage * currentPage - showPerPage, showPerPage * currentPage)
 
           let main;
-          if(this.state.toggleTable){
+          if(this.state.currentTab === "table-tab"){
                main = <main>
-                         <button onClick ={this.handleToggle} >
-                              {!this.state.toggleTable ? "View Map" : "View Table"}
-                         </button>
                          <FilterForm onDropDownChange={this.handleChange} sort={this.state.sort} />
                          <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
                          <Pagination onPageChange={this.handlePagination} showPerPage={showPerPage} dataLength={this.state.covidData.length} />
                       </main>
           } else {
                main = <main>
-                         <button onClick ={this.handleToggle} >
-                              {!this.state.toggleTable ? "View Map" : "View Table"}
-                         </button>
                          <Map />
                       </main>
           }
 
           return (
                <div>
-                    <Header />
+                    <Header handleToggle={this.handleToggle}/>
                          {main}
                     <Footer />
                </div>
