@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-const CaseRow = (props) => {
+
+const CaseRow = props => {
 	const {zipCode, positive, total} = props.covidCase;
 	const {showPerPage, currentPage} = props;
 
@@ -14,5 +15,8 @@ const CaseRow = (props) => {
 		</tr>
 		)
 }
+
+
+
 
 export default CaseRow;

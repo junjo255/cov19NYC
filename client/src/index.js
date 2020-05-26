@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 const axios = require('axios');
 import Header from './components/header.js';
@@ -9,85 +9,71 @@ import Footer from './components/footer.js'
 import Map from './components/map.js';
 import './styles.css';
 
-class App extends React.Component {
-     constructor(props){
-     		super(props);
 
-     		this.state = {
-     			covidData: [],
-                    covidDataPos: [],
-                    sort: "zip",
-                    showPerPage: 20,
-                    currentPage: 1,
-                    currentTab: "table-tab"
-     		}
-               this.handleChange = this.handleChange.bind(this);
-               this.handlePagination = this.handlePagination.bind(this);
-               this.handleToggle = this.handleToggle.bind(this);
+const App = () => {
+     const [covidData, setCovidData] = React.useState([]);
+     const [sort, setSort] = React.useState("zip");
+     const [showPerPage, setSortPerPage] = React.useState(20);
+     const [currentPage, setCurrentPage] = React.useState(1);
+     const [currentTab, setCurrentTab] = React.useState("table-tab");
+
+     useEffect(() => {
+          axios.get('api/covid')
+               .then(res => {
+                    setCovidData(res.data)
+               });         
+     }, []);
+
+     function handleChange(sortBy) {
+          setSort(sortBy);
      }
 
-     componentDidMount() {
-     	axios.get('api/covid')
-     		.then(res => {
-     			this.setState({covidData: res.data})
-     		});
+     function handlePagination(page) {
+          setCurrentPage(page);
      }
 
-     handleChange(sortBy) {
-          this.setState({
-               sort: sortBy,
-               currentPage: 1
+     function handleToggle(tab) {
+          setCurrentTab(tab);
+     }
+
+     let sorted;
+     let data;
+
+     //sort whether data will be shown by zip or positive cases
+     if(sort === "zip"){
+          sorted = covidData;
+     } else {
+          sorted = covidData.slice().sort((a,b) => {
+               return b.positive - a.positive;
           });
      }
 
-     handlePagination(page) {
-          this.setState({
-               currentPage: page
-          });
+
+     //determine how the data will be split for each page
+     data = sorted.slice(showPerPage * currentPage - showPerPage, showPerPage * currentPage)
+
+
+     //determine which component to show depending on which tab is clicked
+     let main;
+     if(currentTab === "table-tab"){
+          main = <main>
+                    <FilterForm onDropDownChange={handleChange} sort={sort} />
+                    <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
+                    <Pagination onPageChange={handlePagination} showPerPage={showPerPage} dataLength={covidData.length} />
+                 </main>
+     } else {
+          main = <main>
+                    <Map />
+                 </main>
      }
 
-     handleToggle(tab) {
-          this.setState({
-               currentTab: tab
-          });
-     }
-
-     render(){
-          let sorted;
-          let data;
-          const {showPerPage, currentPage} = this.state;
-
-          if(this.state.sort === "zip"){
-               sorted = this.state.covidData;
-          } else {
-               sorted = this.state.covidData.slice().sort((a,b) => {
-                    return b.positive - a.positive;
-               });
-          }
-
-          data = sorted.slice(showPerPage * currentPage - showPerPage, showPerPage * currentPage)
-
-          let main;
-          if(this.state.currentTab === "table-tab"){
-               main = <main>
-                         <FilterForm onDropDownChange={this.handleChange} sort={this.state.sort} />
-                         <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
-                         <Pagination onPageChange={this.handlePagination} showPerPage={showPerPage} dataLength={this.state.covidData.length} />
-                      </main>
-          } else {
-               main = <main>
-                         <Map />
-                      </main>
-          }
-
-          return (
-               <div>
-                    <Header handleToggle={this.handleToggle}/>
-                         {main}
-                    <Footer />
-               </div>
-               )
-     }
+     return (
+          <div>
+               <Header handleToggle={handleToggle}/>
+                    {main}
+               <Footer />
+          </div>
+          )
 
 }
 

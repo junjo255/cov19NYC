@@ -15,9 +15,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -26,11 +26,20 @@ module.exports = {
           'css-loader'
         ]
       },
+      {
+        test: /\.svg$/,
+        use: 'file-loader'
+      }
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
-    modules: [src_path, 'node_modules'],
+    extensions: [
+      '.js',
+      '.jsx'
+    ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   },
   devServer: {
     port: process.env.PORT || 8000,
@@ -42,4 +51,3 @@ module.exports = {
     },
   },
 };
-

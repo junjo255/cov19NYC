@@ -2,38 +2,31 @@ import React from 'react';
 import { render } from 'react-dom';
 
 
-class Pagination extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handlePagination = this.handlePagination.bind(this);
+const Pagination = props => {
+
+	function handlePagination(event) {
+		//send page number clicked to the onPageChange function
+		props.onPageChange(event.target.value);
 	}
 
-	handlePagination(event) {
-		this.props.onPageChange(event.target.value);
+	const pages = [];
+	//create the number of pages needed for the amount of data
+	for(let i = 1; i <= Math.ceil(props.dataLength / props.showPerPage); i++) {
+		pages.push(i);
 	}
 
-
-
-
-
-	render() {
-		const {onPageChange, showPerPage, dataLength}	= this.props;
-		const pages = [];
-		for(let i = 1; i <= Math.ceil(dataLength / showPerPage); i++) {
-			pages.push(i);
-		}
-
-
-		return (
-			<ul className="pages">
-				{pages.map(page => {
-					return (
-						<li key={page} value={page} onClick={this.handlePagination}>{page}</li>
-						)
-				})}
-			</ul>
-			)
-	}
+	return (
+		<ul className="pages">
+			{pages.map(page => {
+				return (
+					<li key={page} value={page} onClick={handlePagination}>{page}</li>
+					)
+			})}
+		</ul>
+		)
 }
+
+
+
 
 export default Pagination;

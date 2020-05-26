@@ -2,14 +2,13 @@ import React from 'react';
 import { render } from 'react-dom';
 
 
-class Header extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleChange = this.handleChange.bind(this);
-	}
+const Header = (props) => {
 
-	handleChange(event) {
-		this.props.handleToggle(event.target.id)
+	function handleChange(event) {
+		//pass the id of clicked tab to handleToggle function
+		props.handleToggle(event.target.id);
+
+		//add/remove the "selected-tab" class to add underline css for clicked tab
 		if(event.target.id === "table-tab") {
 			event.target.nextSibling.classList.remove("selected-tab");
 		} else {
@@ -18,17 +17,15 @@ class Header extends React.Component {
 		event.target.classList.add("selected-tab");
 	}
 
-	render() {
-		return (
-			<header>
-				<p>Covid Tracker NYC</p>
-				<div className="tab-container">
-					<div id="table-tab" className="selected-tab" onClick={this.handleChange}>Table</div>
-					<div id="map-tab" onClick={this.handleChange}>Map</div>
-				</div>
-			</header>
-		)
-	}
+	return (
+		<header>
+			<p>Covid Tracker NYC</p>
+			<div className="tab-container">
+				<div id="table-tab" className="selected-tab" onClick={handleChange}>Table</div>
+				<div id="map-tab" onClick={handleChange}>Map</div>
+			</div>
+		</header>
+	)
 }
 
 

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import CaseRow from './caseRow.js';
 
 
-const CaseContainer = (props) => {
+const CaseContainer = props => {
 
 	return (
 		<table>
@@ -25,8 +25,10 @@ const CaseContainer = (props) => {
       	}
       </tbody>
     </table>	
-
 		)
 }
+
+
+
 
 export default CaseContainer;
