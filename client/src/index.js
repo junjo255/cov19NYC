@@ -20,7 +20,7 @@ const App = () => {
      useEffect(() => {
           axios.get('api/covid')
                .then(res => {
-                    setCovidData(res.data)
+                    setCovidData(res.data);
                });         
      }, []);
 
@@ -36,8 +36,7 @@ const App = () => {
           setCurrentTab(tab);
      }
 
-     let sorted;
-     let data;
+     let sorted, data;
 
      //sort whether data will be shown by zip or positive cases
      if(sort === "zip"){
@@ -48,10 +47,8 @@ const App = () => {
           });
      }
 
-
      //determine how the data will be split for each page
      data = sorted.slice(showPerPage * currentPage - showPerPage, showPerPage * currentPage)
-
 
      //determine which component to show depending on which tab is clicked
      let main;
@@ -63,7 +60,7 @@ const App = () => {
                  </main>
      } else {
           main = <main>
-                    <Map />
+                    <Map covidData={covidData} />
                  </main>
      }
 
@@ -74,7 +71,6 @@ const App = () => {
                <Footer />
           </div>
           )
-
 }
 
 render(<App />, document.getElementById('app'));
