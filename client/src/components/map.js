@@ -20,9 +20,9 @@ const Map = (props) => {
 
 		//------------------------------------- LEGEND -------------------------------------   
 
-    const colorScheme = ["#4B09DB", "#6E37E6", "#7852CC", "#A88CE6", "#BFB2DB", "black"];
+    const colorScheme = ["#140e36", "#402158", "#7d5683", "#c9bfb5", "#e2e9ff", "#104E8B"];
     const SVG = d3.select(node);
-    const keys = ["1200 or more", "900 to 1199", "600 to 899", "600 to 899", "300 to 599", "Less than 300", "No Data"];
+    const keys = ["1200 or more", "900 to 1199", "600 to 899", "300 to 599", "Less than 300", "No Data"];
     const color = d3.scaleOrdinal()
       .domain(keys)
       .range(colorScheme);
@@ -74,7 +74,7 @@ const Map = (props) => {
         .on("mouseover", function(d){
           originalHex = d3.select(this).style("fill");
           d3.select(this)
-          .attr("fill", "pink");
+          .attr("opacity", ".5");
 
 		      tooltip.transition()
 		        .duration(200)
@@ -86,7 +86,7 @@ const Map = (props) => {
         })
         .on("mouseout", function(){
           d3.select(this)
-          .attr("fill", originalHex)
+          .attr("opacity", "1")
 
           tooltip.transition()
             .duration(500)
@@ -107,17 +107,17 @@ const Map = (props) => {
 
     function areaColor(d) {
       if(!d.properties.covid) {
-          return "black";
+          return "#104E8B";
       } else if(d.properties.covid.positive > 1200) {
-          return "#4B09DB";
+          return "#140e36";
       } else if(d.properties.covid.positive > 900){
-          return "#6E37E6";
+          return "#402158";
       } else if(d.properties.covid.positive > 600){
-          return "#7852CC";
+          return "#7d5683";
       } else if(d.properties.covid.positive > 300){
-          return "#A88CE6";
+          return "#c9bfb5";
       } else if(d.properties.covid.positive <= 300){
-          return "#BFB2DB";
+          return "#e2e9ff";
       }             
     }
 
