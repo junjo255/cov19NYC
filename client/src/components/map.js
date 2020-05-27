@@ -20,7 +20,7 @@ const Map = (props) => {
 
 		//------------------------------------- LEGEND -------------------------------------   
 
-    const colorScheme = ["#140e36", "#402158", "#7d5683", "#c9bfb5", "#e2e9ff", "#104E8B"];
+    const colorScheme = ["#3D0DB8", "#5231AD", "#664D9E", "#9D89C4", "#D7CFE8", "black"];
     const SVG = d3.select(node);
     const keys = ["1200 or more", "900 to 1199", "600 to 899", "300 to 599", "Less than 300", "No Data"];
     const color = d3.scaleOrdinal()
@@ -75,7 +75,6 @@ const Map = (props) => {
           originalHex = d3.select(this).style("fill");
           d3.select(this)
           .attr("opacity", ".5");
-          console.log(d.properties)
 		      tooltip.transition()
 		        .duration(200)
 		        .style("opacity", .9);
@@ -105,20 +104,36 @@ const Map = (props) => {
 		const projection = d3.geoMercator().scale(37300).fitSize([960, 720], mapData)
 		const path = d3.geoPath().projection(projection);
 
+    // function areaColor(d) {
+    //   if(!d.properties.covid) {
+    //       return "#104E8B";
+    //   } else if(d.properties.covid.positive > 1200) {
+    //       return "#140e36";
+    //   } else if(d.properties.covid.positive > 900){
+    //       return "#402158";
+    //   } else if(d.properties.covid.positive > 600){
+    //       return "#7d5683";
+    //   } else if(d.properties.covid.positive > 300){
+    //       return "#c9bfb5";
+    //   } else if(d.properties.covid.positive <= 300){
+    //       return "#e2e9ff";
+    //   }             
+    // }
+
     function areaColor(d) {
-      if(!d.properties.covid) {
-          return "#104E8B";
-      } else if(d.properties.covid.positive > 1200) {
-          return "#140e36";
-      } else if(d.properties.covid.positive > 900){
-          return "#402158";
-      } else if(d.properties.covid.positive > 600){
-          return "#7d5683";
-      } else if(d.properties.covid.positive > 300){
-          return "#c9bfb5";
-      } else if(d.properties.covid.positive <= 300){
-          return "#e2e9ff";
-      }             
+	    if(!d.properties.covid) {
+	        return "black";
+	    } else if(d.properties.covid.positive > 1200) {
+	        return "#3D0DB8";
+	    } else if(d.properties.covid.positive > 900){
+	        return "#5231AD";
+	    } else if(d.properties.covid.positive > 600){
+	        return "#664D9E";
+	    } else if(d.properties.covid.positive > 300){
+	        return "#9D89C4";
+	    } else if(d.properties.covid.positive <= 300){
+	        return "#D7CFE8";
+	    } 
     }
 
 		const areas = group.append("path")

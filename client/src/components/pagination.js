@@ -19,6 +19,8 @@ const Pagination = props => {
 		<ul className="pages">
 			{pages.map(page => {
 				return (
+					props.currentPage === page ?
+					<li className="current-page" key={page} value={page} onClick={handlePagination}>{page}</li> :
 					<li key={page} value={page} onClick={handlePagination}>{page}</li>
 					)
 			})}

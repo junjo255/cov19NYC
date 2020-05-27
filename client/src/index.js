@@ -26,6 +26,7 @@ const App = () => {
 
      function handleChange(sortBy) {
           setSort(sortBy);
+          setCurrentPage(1);
      }
 
      function handlePagination(page) {
@@ -56,7 +57,7 @@ const App = () => {
           main = <main>
                     <FilterForm onDropDownChange={handleChange} sort={sort} />
                     <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
-                    <Pagination onPageChange={handlePagination} showPerPage={showPerPage} dataLength={covidData.length} />
+                    <Pagination onPageChange={handlePagination} showPerPage={showPerPage} dataLength={covidData.length} currentPage={currentPage} />
                  </main>
      } else {
           main = <main>
