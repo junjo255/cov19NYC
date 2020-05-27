@@ -19,7 +19,7 @@ const Header = (props) => {
 
 	return (
 		<header>
-			<p>Covid Tracker NYC</p>
+			<img src="./logo.png" ></img>
 			<div className="tab-container">
 				<div id="table-tab" className="selected-tab" onClick={handleChange}>Table</div>
 				<div id="map-tab" onClick={handleChange}>Map</div>

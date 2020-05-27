@@ -75,7 +75,7 @@ const Map = (props) => {
           originalHex = d3.select(this).style("fill");
           d3.select(this)
           .attr("opacity", ".5");
-
+          console.log(d.properties)
 		      tooltip.transition()
 		        .duration(200)
 		        .style("opacity", .9);
