@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const src_path = path.resolve(__dirname, './client/src');
+const src_path = path.resolve(__dirname, '../client/src');
 const public_path = path.resolve(__dirname, './client/public');
 
 module.exports = {
