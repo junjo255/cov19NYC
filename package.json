@@ -15,7 +15,7 @@
     "prettier": "prettier --write '{client,server}/**/*.js'",
     "lint:watch": "esw",
     "dev": "npm-run-all --parallel client:dev server:dev",
-    "postinstall": "webpack -p",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
     "start": "node ./server/index.js"
   },
   "keywords": [
