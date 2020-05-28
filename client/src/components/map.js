@@ -78,8 +78,8 @@ const Map = (props) => {
 		      tooltip.transition()
 		        .duration(200)
 		        .style("opacity", .9);
-
-          tooltip.html(`Zipcode: ${d.properties.postalCode} Positive: ${d.properties.covid ? d.properties.covid.positive : "No Data" }`)
+		        console.log(d)
+          tooltip.html(`City: ${d.properties.PO_NAME} <br> Zipcode: ${d.properties.postalCode} <br> Positive: ${d.properties.covid ? d.properties.covid.positive : "No Data" }`)
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 50) + "px");
         })

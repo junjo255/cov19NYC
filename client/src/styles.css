@@ -11,7 +11,11 @@ header {
     padding: 0px 30px;
     height: 100px;
     background-color: #402158;
-    color: #c9bfb5;
+    color: #fffbf7;
+}
+
+.logo {
+  width: 200px;
 }
 
 .tab-container {
@@ -23,6 +27,7 @@ header {
   margin-left: 20px;
   font-size: 15px;
   letter-spacing: 3px;
+  font-weight: 900;
 }
 
 .tab-container div:hover {
@@ -30,7 +35,7 @@ header {
 }
 
 .selected-tab {
-  border-bottom: 3px solid #c9bfb5;
+  border-bottom: 3px solid #fffbf7;
   padding-bottom: 4px;
 }
 
@@ -60,13 +65,14 @@ table {
     border-collapse: separate;
     background: #ffffff;
     margin: 25px auto;
-    width:60%;
+/*    width:60%;*/
+    width: 85%;
 }
 
 thead th {
     font-size:15px;
     font-weight:400;
-    color:#c9bfb5;
+    color:#fffbf7;
     text-align:left;
     padding:20px;
     background-color: #402158; 
@@ -125,7 +131,7 @@ tbody:hover > tr:hover td {
 
 .current-page {
   background: #402158;
-  color: #c9bfb5;
+  color: #fffbf7;
 }
 
 
@@ -134,9 +140,9 @@ tbody:hover > tr:hover td {
 .tooltip {   
     position: absolute;         
     text-align: center;         
-    width: 100px;                    
-    height: 48px;                   
-    padding: 2px;               
+    min-width: 100px;                    
+    min-height: 48px;                   
+    padding: 10px;               
     font: 12px sans-serif;      
     background: #140e36; 
     color: #e2e9ff;
@@ -145,6 +151,8 @@ tbody:hover > tr:hover td {
     pointer-events: none;  
     display: flex;
     align-items: center;
+    justify-content: center;
+    line-height: 17px;
 }
 
 
@@ -175,7 +183,8 @@ footer {
   overflow: hidden;
   display: block;
   margin: auto;
-  width: 330px;
+/*  width: 330px;*/
+  width: 200px;
   height: 100%;
   border-bottom: 0px;
   border-radius: 3px;
@@ -260,7 +269,7 @@ footer {
   color: #92a8d1;
 }
 .select label.option span.title:hover {
-  color: #c9bfb5;
+  color: #fffbf7;
   background: #402158;
   box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
 }
@@ -279,13 +288,22 @@ footer {
   color: inherit;
   width: 100%;
 }
-.select label.option input:disabled ~ span.title {
-  background: #f9f9f9 !important;
-  color: #aaa;
+
+.filterContainer {
+  position: relative;
+  top: -1442px;
+  width: 100%;
 }
-.select label.option input:disabled ~ span.title:hover {
-  color: #c9bfb5;
-  background: #9D89C4;
-  cursor: no-drop;
+.container {
+  position: relative;
+  width: 100%;
+  margin-top: 120px;
 }
+
+
+
+
+
+
+
 

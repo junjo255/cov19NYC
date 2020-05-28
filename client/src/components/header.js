@@ -19,7 +19,7 @@ const Header = (props) => {
 
 	return (
 		<header>
-			<img src="./logo.png" ></img>
+			<img className="logo" src="./logo.png" ></img>
 			<div className="tab-container">
 				<div id="table-tab" className="selected-tab" onClick={handleChange}>Table</div>
 				<div id="map-tab" onClick={handleChange}>Map</div>

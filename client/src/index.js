@@ -55,9 +55,11 @@ const App = () => {
      let main;
      if(currentTab === "table-tab"){
           main = <main>
+                    <div className="container">
+                         <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
+                         <Pagination onPageChange={handlePagination} showPerPage={showPerPage} dataLength={covidData.length} currentPage={currentPage} />
+                    </div>
                     <FilterForm onDropDownChange={handleChange} sort={sort} />
-                    <CaseContainer cases={data} showPerPage={showPerPage} currentPage={currentPage} />
-                    <Pagination onPageChange={handlePagination} showPerPage={showPerPage} dataLength={covidData.length} currentPage={currentPage} />
                  </main>
      } else {
           main = <main>
