@@ -1,6 +1,9 @@
 {
   "name": "Cov19NYC",
   "version": "1.0.0",
+  "engines": {
+    "node": "11.12x"
+    },
   "description": "Cov19NYC",
   "main": "webpack.config.dev.js",
   "proxy": "https://github.com",
