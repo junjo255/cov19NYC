@@ -2,7 +2,8 @@
   "name": "Cov19NYC",
   "version": "1.0.0",
   "engines": {
-    "node": "11.12x"
+    "node": "11.12x",
+    "npm": "6.7.0"
     },
   "description": "Cov19NYC",
   "main": "webpack.config.dev.js",
