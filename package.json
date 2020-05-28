@@ -10,7 +10,9 @@
     "server:dev": "NODE_ENV=dev NODE_PATH=./server nodemon server/index.js",
     "prettier": "prettier --write '{client,server}/**/*.js'",
     "lint:watch": "esw",
-    "dev": "npm-run-all --parallel client:dev server:dev"
+    "dev": "npm-run-all --parallel client:dev server:dev",
+    "postinstall": "webpack -p",
+    "start": "node ./server/index.js"
   },
   "keywords": [
     "react",
